@@ -1,0 +1,99 @@
+AI Agent: 1. AI systems where an LLM controls the workflow. AI systems that can work for you independently.
+          2. An LLM with Tools in a loop to achieve a goal.
+
+Workflows: are systems where LLM and tools are orchestrated (carefully planned, organized) through predefined code paths.
+
+Before an AI can process your prompt, an algorithm breaks the raw text down into individual token fragments.
+In English, one token equals about 4 characters
+
+Risks of Agent Frameworks:
+1. Unpredictable path
+2. Unpredictable output (you might get different outputs each time you run it)
+3. Unpredictable costs (cost of running our agentic system might vary, it might be different every time)
+
+Mitigate (Avoid, Reduce) Risks:
+1. Monitoring
+2. Guardrails (ensure our agents behave safely, consistently, and within our intended boundaries) (is code that you put on, it's sort of scaffolding our code that we build around our agent workflow, that ensures it follows various rules) (typically it's just tests that we add)
+
+Anthropomorphizing (treat AI Agents as if they're human-like in some way)
+
+Key Takeaways:
+1. Build Agents systems to solve problems in a measurable way.
+2. Decide your Agent architecture based on performance.
+3. LLMs generate plausible (that we can believe) outputs, not necessarily accurate outputs.
+   Aligning the outputs with business results? That's our job.
+
+LLMs:
+Open AI: GPT nano, GPT mini, GPT
+Anthropic: Claude Haiku, Claude Sonnet, Claude Opus
+Google: Gemini Flash Lite, Gemini Flash, Gemini Pro
+DeepSeek AI: DeepSeek V4
+
+There are also some companies that don't themselves offer an LLM but rather they are an inference provider (they are a cloud platform that are able to run open source models for us on the cloud).
+Groq: open-source LLMs
+
+There are various ways that we can run a model locally on our own computer.
+Ollama: local open-source
+
+artificialanalysis.ai (gives a comparison of intelligence, speed, cost per task)
+
+In Jupyter Notebook if you put an exclamation mark at the start of the cell, it means I'd like you to run this in a command line
+!ollama pull llama3.2
+
+Runtime: is a platform that can execute AI Agents (AWS Lambda)
+
+Frameworks: Tools and platforms that help developers to build AI Agents. Helper code that makes it easier create Agents (OpenAI Agents SDK, CrewAI, LangGraph/LangChain, Google ADK)
+
+# You don't need to use a Framework. Frameworks are there as utilities to let you do things fast but they're not necessary.
+
+Agent Loop: an LLM in a loop with tools to achieve a goal
+
+* The reality is that we've written some software that in a loop repeatedly calls an LLM and based on the response we may decide to also call some functions and then keep calling the LLM.
+It's our software that's calling the tools. LLM just takes input tokens and gives output tokens.
+
+
+---------------------------------------------------------------Setup----------------------------------------------------------------------
+
+To go C:\Users\pranay 		cd ~
+To call terminal 		ctrl + `
+
+To create Virtual Environment and install dependencies 		uv sync
+uv handles environment creation and package installation almost instantly
+
+Create pyproject.toml and .python-version
+Then run 		uv sync
+
+Create .env file (where we store our API Keys) and setup it
+
+
+---------------------------------------------------Career Digital Twin--------------------------------------------------------------------
+
+Create twin (Directory)
+
+First do a pdf download of LinkedIn. Rename it to linkedin.pdf and put it inside twin Directory
+
+gradio (Python library that allows us to quickly create interactive user interfaces (UIs) for your AI models without needing any front-end development skills)
+
+pypdf (Python library that helps in working and dealing with PDF files. It allows us to read, manipulate, and extract information from PDFs without the need for complex software)
+
+JSON stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data. JSON is often used when data is sent from a server to a web page. JSON is "self-describing" and easy to understand.
+
+The illusion of memory: every message to an LLM is stateless. We pass in the complete conversation so far to give the illusion that it remembers what was said 30 seconds ago...
+
+We will use a tool to record an email in emails.txt
+
+Create requirements.txt, summary.txt, context.py, tools.py, styles.py, app.py in twin Directory
+
+context.py (where we craft the overall information. contains the part that reads in the LinkedIn profile and it reads in the summary as well and then it constructs the system prompt)
+
+tools.py (all the functionality related to our code, includes the push notification, JSON that will send to the LLM and also the handle tool calls)
+
+styles.py (CSS)
+
+app.py (the module that brings together other modules, which is our Gradio app)
+
+# We could have just put everything in app.py, but it is more elegant to separate it out like this
+
+Go to the twin Directory in terminal using 	cd twin
+
+To run a Python module using uv			uv run app.py
