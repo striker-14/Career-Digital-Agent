@@ -1,0 +1,12 @@
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+load_dotenv(override=True)
+
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
+google_api_key = os.getenv("GOOGLE_API_KEY")
+gemini = OpenAI(base_url=GEMINI_BASE_URL, api_key=google_api_key)
+response = gemini.chat.completions.create(model="gemini-3.1-flash-lite", messages=messages)
+print(response.choices[0].message.content)
+
+response = gemini.chat.completions.create(model="gemini-3.1-flash-lite", messages=[{"role":"user", "content": "what is 2+2?"}])
